@@ -1,6 +1,8 @@
 import { marketView } from "@/lib/boardData";
 import { recallTexts } from "@/lib/memory";
 
+export const maxDuration = 60;
+
 export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
   const { id } = await context.params;
   const url = new URL(request.url);

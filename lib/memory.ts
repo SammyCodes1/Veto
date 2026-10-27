@@ -3,16 +3,22 @@ import { MemWal } from "@mysten-incubation/memwal";
 let client: MemWal | null = null;
 
 export function memoryConfigured(): boolean {
-  return Boolean(process.env.MEMWAL_PRIVATE_KEY && process.env.MEMWAL_ACCOUNT_ID);
+  return Boolean(envValue("MEMWAL_PRIVATE_KEY") && envValue("MEMWAL_ACCOUNT_ID"));
+}
+
+function envValue(name: string): string {
+  return (process.env[name] ?? "").trim().replace(/^['"]|['"]$/g, "");
 }
 
 function memwal(): MemWal | null {
-  if (!memoryConfigured()) return null;
+  const key = envValue("MEMWAL_PRIVATE_KEY");
+  const accountId = envValue("MEMWAL_ACCOUNT_ID");
+  if (!key || !accountId) return null;
   if (!client) {
     client = MemWal.create({
-      key: process.env.MEMWAL_PRIVATE_KEY ?? "",
-      accountId: process.env.MEMWAL_ACCOUNT_ID ?? "",
-      serverUrl: process.env.MEMWAL_SERVER_URL || "https://relayer.memory.walrus.xyz",
+      key,
+      accountId,
+      serverUrl: envValue("MEMWAL_SERVER_URL") || "https://relayer.memory.walrus.xyz",
       namespace: "veto.tickets",
     });
   }

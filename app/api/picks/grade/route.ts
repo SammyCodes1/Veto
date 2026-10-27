@@ -6,6 +6,8 @@ import { cellRuleMemory, liveGradeMemory } from "@/lib/memoryText";
 import { gradeMatchesTatum, liveClv, readOwnedPicks } from "@/lib/rpc";
 import { chainPrice, marketFacts, suiRpc } from "@/lib/tatum";
 
+export const maxDuration = 60;
+
 type GradeTx = {
   events?: Array<{ type?: string; parsedJson?: Record<string, unknown> }>;
   transaction?: { data?: { sender?: string } };

@@ -1,4 +1,6 @@
 import { slateById } from "@/lib/boardData";
+
+export const maxDuration = 60;
 import { remember } from "@/lib/memory";
 import { livePlacementMemory } from "@/lib/memoryText";
 import { readPlacement } from "@/lib/rpc";
