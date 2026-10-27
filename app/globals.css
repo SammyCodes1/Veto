@@ -20,3 +20,48 @@ a { color: inherit; } button, input { font: inherit; color: inherit; } button { 
 .ticket { display: grid; grid-template-columns: 1.15fr .85fr; gap: 30px; padding-top: 48px; }.ticket h1 { font-size: clamp(52px,6vw,82px); }.gap { margin: 12px 0 18px; color: var(--fog); font-size: 20px; }.prices { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--muted); }.quotes, .controls { padding: 21px; border-radius: 8px; }.quotes { width: 100%; margin: 6px 0; background: rgb(3 16 29 / .32); box-shadow: none; }.quotes pre, .memory { white-space: pre-wrap; font-family: var(--mono); font-size: 11px; color: var(--fog); margin: 0 0 12px; }.controls { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }.side { display: flex; gap: 8px; flex-wrap: wrap; }.side button, .lock { background: transparent; border: 1px solid rgb(244 247 242 / .25); border-radius: 3px; padding: 10px 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; }.side button[data-on="true"] { background: var(--field); color: var(--midnight); border-color: var(--field); }.lock:not(:disabled) { color: var(--midnight); background: var(--field); border-color: var(--field); min-width: 220px; text-align: left; font-weight: 700; }.lock:disabled { color: var(--muted); cursor: not-allowed; min-width: 220px; text-align: left; } label { display: grid; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--muted); } input[type="number"] { width: 140px; padding: 8px 10px; color: var(--chalk); background: rgb(2 14 27 / .4); border: 1px solid var(--line); border-radius: 3px; font-family: var(--display); font-size: 28px; } .spark { width: 100%; height: 72px; margin: 8px 0 18px; background: linear-gradient(180deg, rgb(184 244 58 / .07), transparent); } .spark polyline { fill: none; stroke: var(--field); stroke-width: 1.75; }
 .cells { display: grid; gap: 18px; padding-top: 30px; }.cell { padding: 23px; border-radius: 8px; }.cell header { display: flex; justify-content: space-between; gap: 16px; align-items: center; }.cell h2 { margin-bottom: 5px; } table { width: 100%; border-collapse: collapse; margin-top: 15px; font-family: var(--mono); font-size: 11px; } th, td { text-align: left; padding: 10px 8px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; } th { color: var(--muted); font-weight: 500; } .tag { color: var(--field); }.grade { display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center; }.letter { max-width: 70ch; padding-top: 54px; }.letter h1 { font-size: clamp(58px,7vw,90px); margin-bottom: 20px; }.letter h2 { font-size: 36px; margin: 32px 0 10px; }.letter p { margin: 0 0 16px; color: var(--fog); }.letter .meta { color: var(--field); }.receipt { max-width: 68ch; padding-top: 54px; }.receipt h1 { font-size: clamp(56px,7vw,88px); }.digest { font-family: var(--mono); font-size: 12px; color: var(--fog); word-break: break-all; }
 @media (prefers-reduced-motion: reduce) { .game, .ball, button, .switch, .ghost { transition: none; animation: none; }.game:hover, button:active, .switch:hover, .ghost:hover { transform: none; } } @media (max-width: 800px) { .hero, .pair, .list, .ticket { grid-template-columns: 1fr; }.hero { gap: 14px; padding-top: 48px; }.hero h1, .lede h1 { font-size: clamp(58px,16vw,82px); }.stat-num { font-size: 96px; }.nav { min-height: auto; align-items: flex-start; flex-direction: column; padding: 14px 18px; }.nav-links { width: 100%; justify-content: space-between; gap: 8px; }.nav-links a, .text-button { font-size: 9px; }.section-heading { grid-template-columns: 1fr; gap: 8px; }.how ol { grid-template-columns: 1fr; gap: 16px; }.how li, .how li:first-child { padding: 0; border: 0; }.ball-d, .ball-e, .ball-f { display: none; } } @media (max-width: 480px) { .shell { width: min(100% - 24px,1180px); }.how, .note, .pair article, .stat, .cell, .controls { padding: 20px; }.hero h1, .lede h1 { font-size: 57px; }.hero-copy p { font-size: 15px; }.game { min-height: 228px; } table { display: block; overflow-x: auto; white-space: nowrap; } }
+
+/* Premium motion pass: hierarchy reveals, live state is signaled, actions feel physical. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy { animation: premium-enter 720ms cubic-bezier(.16, 1, .3, 1) both; }
+  .hero h1 em { display: inline-block; animation: accent-lock 860ms 260ms cubic-bezier(.16, 1, .3, 1) both; }
+  .stat { animation: premium-enter 780ms 120ms cubic-bezier(.16, 1, .3, 1) both; }
+  .stat::after { animation: field-orbit 14s ease-in-out infinite; }
+  .live-dot::before { animation: live-signal 2.4s ease-out infinite; }
+  .how { animation: premium-enter 700ms 100ms cubic-bezier(.16, 1, .3, 1) both; }
+  .pair article { animation: premium-enter 700ms cubic-bezier(.16, 1, .3, 1) both; }
+  .pair article:nth-child(2) { animation-delay: 110ms; }
+  .note { animation: premium-enter 700ms 120ms cubic-bezier(.16, 1, .3, 1) both; }
+  .lede, .letter, .receipt { animation: premium-enter 620ms cubic-bezier(.16, 1, .3, 1) both; }
+  .ticket > * { animation: premium-enter 680ms cubic-bezier(.16, 1, .3, 1) both; }
+  .ticket > *:nth-child(2) { animation-delay: 100ms; }
+  .cell { animation: premium-enter 620ms cubic-bezier(.16, 1, .3, 1) both; }
+  .cell:nth-child(2) { animation-delay: 80ms; }
+  .cell:nth-child(3) { animation-delay: 150ms; }
+  .game { animation: premium-enter 560ms cubic-bezier(.16, 1, .3, 1) both; }
+  .game:nth-child(2n) { animation-delay: 80ms; }
+  .game:nth-child(3n) { animation-delay: 140ms; }
+}
+
+.switch, .ghost, .game, .side button, .lock { will-change: transform; }
+.switch { position: relative; isolation: isolate; overflow: hidden; }
+.switch::after { content: ""; position: absolute; inset: 0 auto 0 -45%; width: 32%; z-index: -1; transform: skewX(-18deg) translateX(-130%); background: rgb(255 255 255 / .36); transition: transform 480ms cubic-bezier(.16, 1, .3, 1); }
+.switch:hover::after { transform: skewX(-18deg) translateX(520%); }
+.switch:hover { box-shadow: 0 9px 24px rgb(184 244 58 / .2); }
+.game { position: relative; overflow: hidden; }
+.game::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 2px; background: var(--field); opacity: 0; transform: scaleY(.3); transform-origin: center; transition: transform 260ms cubic-bezier(.16, 1, .3, 1), opacity 180ms ease; }
+.game:hover::after { opacity: 1; transform: scaleY(.82); }
+.game:hover { transform: translateY(-5px) scale(1.008); }
+.game-dead::after { background: var(--danger); }
+.side button:not([data-on="true"]):hover { border-color: var(--field); color: var(--field); transform: translateY(-2px); }
+.lock:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgb(184 244 58 / .18); }
+
+@keyframes premium-enter { from { opacity: 0; transform: translate3d(0, 20px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes accent-lock { from { opacity: 0; transform: translate3d(-14px, 0, 0) skewX(-8deg); } to { opacity: 1; transform: translate3d(0, 0, 0) skewX(0); } }
+@keyframes field-orbit { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-10px, -12px, 0) scale(1.05); } }
+@keyframes live-signal { 0% { box-shadow: 0 0 0 0 rgb(184 244 58 / .48); } 55%, 100% { box-shadow: 0 0 0 7px rgb(184 244 58 / 0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy, .hero h1 em, .stat, .stat::after, .live-dot::before, .how, .pair article, .note, .lede, .letter, .receipt, .ticket > *, .cell, .game { animation: none !important; }
+  .switch::after, .game::after { transition: none; }
+}
