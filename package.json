@@ -1,0 +1,29 @@
+{
+  "name": "veto",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "tsx --test lib/decision.test.ts",
+    "build-seed": "tsx scripts/build-seed.ts",
+    "seed": "tsx --env-file=.env scripts/seed.ts"
+  },
+  "dependencies": {
+    "@mysten-incubation/memwal": "^0.1.9",
+    "@mysten/dapp-kit": "1.1.17",
+    "@mysten/sui": "2.35.0",
+    "@tanstack/react-query": "^5.101.4",
+    "next": "15.5.28",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}

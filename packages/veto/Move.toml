@@ -1,0 +1,3 @@
+[package]
+name = "veto"
+edition = "2024"

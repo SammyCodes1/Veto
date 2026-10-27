@@ -1,0 +1,178 @@
+[
+  {
+    "id": "0x601a35941bf6970372c036efd9a00767c7a722932cf0614a88ed0e44dc54bc1b",
+    "cell": "nba:moneyline",
+    "title": "Warriors vs. Nuggets",
+    "polymarketId": "0x601a35941bf6970372c036efd9a00767c7a722932cf0614a88ed0e44dc54bc1b",
+    "yesLabel": "Warriors",
+    "noLabel": "Nuggets",
+    "closeTime": "2026-10-27T02:00:00.000Z",
+    "odds": {
+      "sportKey": "basketball_nba",
+      "home": "Nuggets",
+      "away": "Warriors",
+      "market": "h2h",
+      "outcome": "Warriors"
+    }
+  },
+  {
+    "id": "0xab9571b00f4a53fe46c1acb1e59b0885202cd7c3bb7e2347313fcebcfadd7e98",
+    "cell": "nba:moneyline",
+    "title": "76ers vs. Pacers",
+    "polymarketId": "0xab9571b00f4a53fe46c1acb1e59b0885202cd7c3bb7e2347313fcebcfadd7e98",
+    "yesLabel": "76ers",
+    "noLabel": "Pacers",
+    "closeTime": "2026-10-28T23:00:00.000Z",
+    "odds": {
+      "sportKey": "basketball_nba",
+      "home": "Pacers",
+      "away": "76ers",
+      "market": "h2h",
+      "outcome": "76ers"
+    }
+  },
+  {
+    "id": "0x3e5dab364ce5d5be651c1e9afac62577be5d7680497606e401afd06f5ea068af",
+    "cell": "nfl:moneyline",
+    "title": "Panthers vs. Packers",
+    "polymarketId": "0x3e5dab364ce5d5be651c1e9afac62577be5d7680497606e401afd06f5ea068af",
+    "yesLabel": "Panthers",
+    "noLabel": "Packers",
+    "closeTime": "2026-10-30T00:15:00.000Z",
+    "odds": {
+      "sportKey": "americanfootball_nfl",
+      "home": "Packers",
+      "away": "Panthers",
+      "market": "h2h",
+      "outcome": "Panthers"
+    }
+  },
+  {
+    "id": "0x8bc3652dfafdab8a4e339cf3cf48c6f92542cd75aafd7e30c16e16c17f3a3b05",
+    "cell": "nfl:moneyline",
+    "title": "Falcons vs. Buccaneers",
+    "polymarketId": "0x8bc3652dfafdab8a4e339cf3cf48c6f92542cd75aafd7e30c16e16c17f3a3b05",
+    "yesLabel": "Falcons",
+    "noLabel": "Buccaneers",
+    "closeTime": "2026-11-01T18:00:00.000Z",
+    "odds": {
+      "sportKey": "americanfootball_nfl",
+      "home": "Buccaneers",
+      "away": "Falcons",
+      "market": "h2h",
+      "outcome": "Falcons"
+    }
+  },
+  {
+    "id": "0x58a1e3b89a2073851576a0edb4d98d5bd06e740645dd912a43ad4ab1cc50cc3d",
+    "cell": "nfl:total",
+    "title": "Falcons vs. Buccaneers: O/U 46.5",
+    "polymarketId": "0x58a1e3b89a2073851576a0edb4d98d5bd06e740645dd912a43ad4ab1cc50cc3d",
+    "yesLabel": "Over",
+    "noLabel": "Under",
+    "closeTime": "2026-11-01T18:00:00.000Z",
+    "odds": {
+      "sportKey": "americanfootball_nfl",
+      "home": "Buccaneers",
+      "away": "Falcons",
+      "market": "totals",
+      "outcome": "Over"
+    }
+  },
+  {
+    "id": "0xfa8bd8b518a9b1a5f733c41a01e69bd83b3749b66892fb50b580e63d5f081441",
+    "cell": "nfl:total",
+    "title": "Titans vs. Bengals: O/U 46.5",
+    "polymarketId": "0xfa8bd8b518a9b1a5f733c41a01e69bd83b3749b66892fb50b580e63d5f081441",
+    "yesLabel": "Over",
+    "noLabel": "Under",
+    "closeTime": "2026-11-01T18:00:00.000Z",
+    "odds": {
+      "sportKey": "americanfootball_nfl",
+      "home": "Bengals",
+      "away": "Titans",
+      "market": "totals",
+      "outcome": "Over"
+    }
+  },
+  {
+    "id": "0x52d4c54336f3ac5a0fd5d9c8b8c02627f8c85c81f2ebdc95b4babe5e327820c9",
+    "cell": "nfl:total",
+    "title": "Vikings vs. Lions: O/U 46.5",
+    "polymarketId": "0x52d4c54336f3ac5a0fd5d9c8b8c02627f8c85c81f2ebdc95b4babe5e327820c9",
+    "yesLabel": "Over",
+    "noLabel": "Under",
+    "closeTime": "2026-11-01T18:00:00.000Z",
+    "odds": {
+      "sportKey": "americanfootball_nfl",
+      "home": "Lions",
+      "away": "Vikings",
+      "market": "totals",
+      "outcome": "Over"
+    }
+  },
+  {
+    "id": "0x28d337de28dda49878f7d29ef44b6f1b6637a7a76219e2fca72c740636e852e1",
+    "cell": "nfl:total",
+    "title": "Colts vs. Jaguars: O/U 46.5",
+    "polymarketId": "0x28d337de28dda49878f7d29ef44b6f1b6637a7a76219e2fca72c740636e852e1",
+    "yesLabel": "Over",
+    "noLabel": "Under",
+    "closeTime": "2026-11-01T18:00:00.000Z",
+    "odds": {
+      "sportKey": "americanfootball_nfl",
+      "home": "Jaguars",
+      "away": "Colts",
+      "market": "totals",
+      "outcome": "Over"
+    }
+  },
+  {
+    "id": "0xd6c885fa34925092493d40c79b6ec0abf26e4e0eb26340cdf305374263443fa0",
+    "cell": "nfl:total",
+    "title": "Chargers vs. Rams: O/U 44.5",
+    "polymarketId": "0xd6c885fa34925092493d40c79b6ec0abf26e4e0eb26340cdf305374263443fa0",
+    "yesLabel": "Over",
+    "noLabel": "Under",
+    "closeTime": "2026-11-01T21:05:00.000Z",
+    "odds": {
+      "sportKey": "americanfootball_nfl",
+      "home": "Rams",
+      "away": "Chargers",
+      "market": "totals",
+      "outcome": "Over"
+    }
+  },
+  {
+    "id": "0x474a3871cac3511bcd14e9d6d30c15808c855b98df6e4c454f4c7ee6655c1548",
+    "cell": "nfl:total",
+    "title": "Patriots vs. Dolphins: O/U 44.5",
+    "polymarketId": "0x474a3871cac3511bcd14e9d6d30c15808c855b98df6e4c454f4c7ee6655c1548",
+    "yesLabel": "Over",
+    "noLabel": "Under",
+    "closeTime": "2026-11-01T21:25:00.000Z",
+    "odds": {
+      "sportKey": "americanfootball_nfl",
+      "home": "Dolphins",
+      "away": "Patriots",
+      "market": "totals",
+      "outcome": "Over"
+    }
+  },
+  {
+    "id": "0x14fe5ff21bae40c1000166ff389082309c3317efbbb227b405c4b4183f37c161",
+    "cell": "nfl:total",
+    "title": "Bears vs. Seahawks: O/U 46.5",
+    "polymarketId": "0x14fe5ff21bae40c1000166ff389082309c3317efbbb227b405c4b4183f37c161",
+    "yesLabel": "Over",
+    "noLabel": "Under",
+    "closeTime": "2026-11-03T01:15:00.000Z",
+    "odds": {
+      "sportKey": "americanfootball_nfl",
+      "home": "Seahawks",
+      "away": "Bears",
+      "market": "totals",
+      "outcome": "Over"
+    }
+  }
+]
