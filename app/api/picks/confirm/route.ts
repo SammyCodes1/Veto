@@ -13,7 +13,6 @@ export async function POST(request: Request) {
   const packageId = process.env.VETO_PACKAGE_ID;
   if (!packageId) return Response.json({ error: "The Move package is not published yet." }, { status: 503 });
   const row = await slateById(marketId);
-  if (!row) return Response.json({ error: "That market is not on the slate." }, { status: 404 });
   if (!digest || !address) return Response.json({ error: "Digest and address are required." }, { status: 400 });
 
   try {
@@ -24,10 +23,13 @@ export async function POST(request: Request) {
     if (placed.sender.toLowerCase() !== address) {
       return Response.json({ accepted: false, reason: "The sender does not match this wallet." }, { status: 403 });
     }
-    if (placed.marketId !== row.polymarketId) {
+    if (row && placed.marketId !== row.polymarketId) {
       return Response.json({ accepted: false, reason: "That transaction belongs to a different market." }, { status: 422 });
     }
-    if (!(placed.timestampMs < Date.parse(row.closeTime))) {
+    if (!row && placed.marketId !== marketId) {
+      return Response.json({ accepted: false, reason: "That transaction belongs to a different market." }, { status: 422 });
+    }
+    if (row && !(placed.timestampMs < Date.parse(row.closeTime))) {
       return Response.json(
         { accepted: false, reason: "The transaction landed after the close. Nothing was remembered." },
         { status: 409 },
@@ -38,7 +40,7 @@ export async function POST(request: Request) {
       id: placed.pickId,
       cell: placed.cell,
       marketId: placed.marketId,
-      title: row.title,
+      title: row?.title ?? placed.marketId,
       side: placed.side === 1 ? "YES" : "NO",
       bookBps: placed.bookBps,
       chainBps: placed.chainBps,

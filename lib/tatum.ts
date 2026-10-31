@@ -192,13 +192,25 @@ function stringOrNull(value: unknown): string | null {
 }
 
 function readWinner(data: Record<string, unknown>): boolean | null {
+  const resolution = data.resolution;
+  const resolutionName = resolution && typeof resolution === "object"
+    ? String((resolution as Record<string, unknown>).outcome ?? "")
+    : "";
   const status = String(data.status ?? "").toLowerCase();
-  const settled = status.includes("resolved") || status.includes("settled") || data.resolved === true;
+  const settled = status.includes("resolved") || status.includes("settled") || data.resolved === true || resolutionName.length > 0;
   if (!settled) return null;
-  const winner = String(data.winningOutcome ?? data.result ?? data.resolvedOutcome ?? "").toLowerCase();
+  const outcomes = Array.isArray(data.outcomes) ? data.outcomes : [];
+  const names = outcomes.map((outcome) => {
+    if (!outcome || typeof outcome !== "object") return "";
+    const row = outcome as Record<string, unknown>;
+    return String(row.name ?? row.outcome ?? row.title ?? "");
+  });
+  const winner = (resolutionName || String(data.winningOutcome ?? data.result ?? data.resolvedOutcome ?? "")).toLowerCase();
   if (winner === "yes" || winner === "over") return true;
   if (winner === "no" || winner === "under") return false;
-  const outcomes = Array.isArray(data.outcomes) ? data.outcomes : [];
+  const named = names.findIndex((name) => name.toLowerCase() === winner);
+  if (named === 0) return true;
+  if (named === 1) return false;
   const marked = outcomes.find((outcome) => {
     if (!outcome || typeof outcome !== "object") return false;
     const row = outcome as Record<string, unknown>;

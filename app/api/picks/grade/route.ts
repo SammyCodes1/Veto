@@ -42,10 +42,11 @@ export async function POST(request: Request) {
       return Response.json({ accepted: false, reason: "The graded object is not readable yet." }, { status: 202 });
     }
     const row = await slateById(pick.marketId);
-    if (!row) return Response.json({ accepted: false, reason: "That pick is not on the slate." }, { status: 422 });
+    const polymarketId = row?.polymarketId ?? pick.marketId;
+    const title = row?.title ?? pick.marketId;
 
-    const facts = await marketFacts(row.polymarketId);
-    const quote = await chainPrice(row.polymarketId);
+    const facts = await marketFacts(polymarketId);
+    const quote = await chainPrice(polymarketId);
     if (facts.yesWins === null || quote.yes === null) {
       return Response.json({ accepted: false, reason: "Tatum has not published a resolution for this market." }, { status: 409 });
     }
@@ -67,7 +68,7 @@ export async function POST(request: Request) {
       id: pick.pickId,
       cell: pick.cell,
       marketId: pick.marketId,
-      title: row.title,
+      title,
       side: pick.side === 1 ? "YES" : "NO",
       bookBps: pick.bookBps,
       chainBps: pick.chainBps,

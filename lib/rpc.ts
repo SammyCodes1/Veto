@@ -110,7 +110,7 @@ function parseOwned(objectId: string, fields: Record<string, unknown> | undefine
 }
 
 export function liveClv(pick: OwnedPick): number | null {
-  if (pick.outcome === 0 || pick.closeBps === 0) return null;
+  if (pick.outcome === 0) return null;
   const entryYes = fromBps(pick.chainBps);
   const closeYes = fromBps(pick.closeBps);
   const entry = pick.side === 1 ? entryYes : 1 - entryYes;
