@@ -6,6 +6,7 @@ import { useState } from "react";
 
 type Suggestion = {
   ready: boolean;
+  closed?: boolean;
   yesWins?: boolean;
   closeBps?: number;
 };
@@ -45,7 +46,7 @@ export function GradeButton({ pickId, side, suggestion }: { pickId: string; side
   }
 
   if (!packageId) return <span className="quiet">Package not published</span>;
-  if (!ready) return <span className="quiet">Not resolved</span>;
+  if (!ready) return <span className="quiet">{suggestion?.closed ? "Game closed" : "Not resolved"}</span>;
 
   return (
     <span className="grade">

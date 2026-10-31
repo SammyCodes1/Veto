@@ -65,6 +65,7 @@ export type MarketFacts = {
   closeTime: string | null;
   status: string;
   yesWins: boolean | null;
+  question: string | null;
 };
 
 export async function marketFacts(marketId: string): Promise<MarketFacts> {
@@ -74,6 +75,7 @@ export async function marketFacts(marketId: string): Promise<MarketFacts> {
     closeTime: stringOrNull(data.endDate ?? data.closeTime ?? data.endTime ?? data.expirationTime),
     status: String(data.status ?? ""),
     yesWins: readWinner(data),
+    question: stringOrNull(data.question ?? data.title),
   };
 }
 

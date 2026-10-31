@@ -7,7 +7,7 @@ import { GradeButton } from "@/components/GradeButton";
 import { signed, Stamp } from "@/components/Stamp";
 import type { Decision, SeedTicket } from "@/lib/types";
 
-type Suggestion = { ready: boolean; yesWins?: boolean; closeBps?: number };
+type Suggestion = { ready: boolean; closed?: boolean; yesWins?: boolean; closeBps?: number };
 
 type LivePick = {
   pickId: string;
@@ -49,6 +49,7 @@ export function RecordView() {
   return (
     <section className="cells">
       {payload.liveError ? <p className="notice">{payload.liveError}</p> : null}
+      <ClosedPicks picks={payload.live} />
       {payload.cells.map((cell) => (
         <article className="cell" key={cell.cell}>
           <header>
@@ -89,5 +90,17 @@ export function RecordView() {
         </article>
       ))}
     </section>
+  );
+}
+
+function ClosedPicks({ picks }: { picks: LivePick[] }) {
+  const closed = picks.filter((pick) => pick.outcome === 0 && pick.suggestion?.closed);
+  if (!closed.length) return null;
+  const ready = closed.some((pick) => pick.suggestion?.ready);
+  return (
+    <p className="alert" role="status">
+      {closed.map((pick) => pick.title).join(", ")} {closed.length === 1 ? "has" : "have"} closed.
+      {ready ? " Grade the pick in this table." : " The result is not in yet."}
+    </p>
   );
 }

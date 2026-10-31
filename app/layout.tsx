@@ -4,6 +4,7 @@ import Link from "next/link";
 import "./globals.css";
 import { Balls } from "@/components/Balls";
 import { Providers } from "@/components/Providers";
+import { ClosedNotice } from "@/components/ClosedNotice";
 import { Connect } from "@/components/Connect";
 
 const display = Barlow_Condensed({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-display" });
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Connect />
               </div>
             </nav>
+            <ClosedNotice />
             {children}
           </div>
         </Providers>

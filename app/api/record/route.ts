@@ -14,11 +14,13 @@ export async function GET(request: Request) {
     const owned = await readOwnedPicks(address, process.env.VETO_PACKAGE_ID);
     const live = [];
     for (const pick of owned) {
+      const suggestion = pick.outcome === 0 ? await suggestionFor(pick.marketId) : null;
+      const slate = await slateById(pick.marketId);
       live.push({
         ...pick,
         clvPp: liveClv(pick),
-        title: (await slateById(pick.marketId))?.title ?? pick.marketId,
-        suggestion: pick.outcome === 0 ? await suggestionFor(pick.marketId) : null,
+        title: slate?.title ?? suggestion?.question ?? pick.marketId,
+        suggestion,
       });
     }
     return Response.json({ ...body, live });
@@ -28,15 +30,15 @@ export async function GET(request: Request) {
   }
 }
 
-async function suggestionFor(marketId: string): Promise<{ ready: boolean; yesWins?: boolean; closeBps?: number } | null> {
-  const row = await slateById(marketId);
-  if (!row) return null;
+async function suggestionFor(marketId: string): Promise<{ ready: boolean; closed: boolean; question: string | null; yesWins?: boolean; closeBps?: number }> {
   try {
-    const facts = await marketFacts(row.polymarketId);
-    const quote = await chainPrice(row.polymarketId);
-    if (facts.yesWins === null || quote.yes === null) return { ready: false };
-    return { ready: true, yesWins: facts.yesWins, closeBps: Math.round(quote.yes * 10_000) };
+    const facts = await marketFacts(marketId);
+    const quote = await chainPrice(marketId);
+    const pastClose = facts.closeTime !== null && Date.parse(facts.closeTime) <= Date.now();
+    const closed = facts.yesWins !== null || facts.status.toLowerCase().includes("resolved") || pastClose;
+    if (facts.yesWins === null || quote.yes === null) return { ready: false, closed, question: facts.question };
+    return { ready: true, closed: true, question: facts.question, yesWins: facts.yesWins, closeBps: Math.round(quote.yes * 10_000) };
   } catch {
-    return { ready: false };
+    return { ready: false, closed: false, question: null };
   }
 }
